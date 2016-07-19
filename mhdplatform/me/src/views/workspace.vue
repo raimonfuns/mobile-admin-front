@@ -180,21 +180,6 @@
 	</upload-modal>
 
 	<!-- 背景颜色浮层 -->
-	<!-- <modal
-		:show.sync="showBackgroundColorModal"
-    :close="closeBackgroundColorModal">
-		<div slot="header">
-			<h3>设置背景图片颜色</h3>
-		</div>
-		<div slot="body">
-			<label>背景颜色:</label><input type="text" v-model="backgroundColor">
-    </div>
-    <div slot="footer">
-      <button class="btn btn-default" @click="closeBackgroundColorModal">
-        关闭
-      </button>
-    </div>
-	</modal> -->
 	<background-modal
 		:show-background-color-modal.sync="showBackgroundColorModal"
 		:close-background-color-modal.sync="closeBackgroundColorModal"
@@ -202,23 +187,11 @@
 	</background-modal>
 
 	<!-- 二维码浮层 -->
-	<modal
-		:show.sync="showQR"
-    :close="closeQR">
-		<div slot="header">
-			<h3>预览页面二维码</h3>
-		</div>
-		<div slot="body">
-			<p class="text-center" v-show="!showQRImg">正在生成二维码...</p>
-			<div id="qrcode" class="text-center" v-show="showQRImg"></div>
-			<a href="#" id="previewLocation" target="_blank" v-show="showQRImg">预览地址</a>
-    </div>
-    <div slot="footer">
-      <button class="btn btn-default" @click="closeQR">
-        关闭
-      </button>
-    </div>
-	</modal>
+	<qr-modal
+    :show.sync="showQR"
+    :close.sync="closeQR",
+    :show-img.sync="showQRImg">
+  </qr-modal>
 
 	<!-- 支付组件浮层 -->
 	<pay-modal
@@ -247,6 +220,7 @@ import alertModal from '../components/alertmodal.vue';
 import rankModal from '../components/rankmodal.vue';
 import uploadModal from '../components/uploadmodal.vue';
 import backgroundModal from '../components/backgroundmodal.vue';
+import qrModal from '../components/qrmodal.vue';
 
 var vm; // v-model
 var $contentWrap;
@@ -258,7 +232,8 @@ export default {
   	payModal,
   	alertModal,
 		uploadModal,
-		backgroundModal
+		backgroundModal,
+		qrModal
   },
 
 	data () {
