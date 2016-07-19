@@ -1,10 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import App from './components/app.vue'
-import hdTableList from './components/hdtablelist.vue'
-import workspace from './components/workspace.vue'
-
-console.log(jQuery);
+import hdTableList from './views/hdtablelist.vue'
+import workspace from './views/workspace.vue'
 
 // js
 require('./library/jquery-ui.js');

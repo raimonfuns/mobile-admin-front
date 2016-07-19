@@ -245,12 +245,12 @@ var _ = require('underscore');
 var VueFileUpload = require('vue-file-upload');
 
 import service from '../service';
-import upload from './upload.vue';
-import modal from './modal.vue';
-import loading from './loading.vue';
-import payModal from './paymodal.vue';
-import alertModal from './alertmodal.vue';
-import rankModal from './rankmodal.vue';
+import upload from '../components/upload.vue';
+import modal from '../components/modal.vue';
+import loading from '../components/loading.vue';
+import payModal from '../components/paymodal.vue';
+import alertModal from '../components/alertmodal.vue';
+import rankModal from '../components/rankmodal.vue';
 
 var vm; // v-model
 var $contentWrap;

@@ -96,12 +96,11 @@
 
 <script>
 import service from '../service'
-import pagination from './pagination.vue'
-
-import newHdModal from './newhdmodal.vue'
-import editHdTimeModal from './edithdtimemodal.vue'
-import alertModal from './alertmodal.vue'
-import modal from './modal.vue'
+import pagination from '../components/pagination.vue'
+import newHdModal from '../components/newhdmodal.vue'
+import editHdTimeModal from '../components/edithdtimemodal.vue'
+import alertModal from '../components/alertmodal.vue'
+import modal from '../components/modal.vue'
 
 export default {
   data () {
