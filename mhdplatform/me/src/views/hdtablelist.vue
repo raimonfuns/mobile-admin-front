@@ -2,7 +2,7 @@
 
   <nav class="navbar navbar-default navbar-static-top" style="margin-bottom: 0">
     <div class="navbar-header">
-      <a class="navbar-brand" href="/">专题模板生成页面 test ({{ count }} <button @click="openAlert('hello123')">alert</button>) test </a>
+      <a class="navbar-brand" href="/">专题模板生成页面</a>
     </div>
   </nav>
   <div class="container">
@@ -110,28 +110,17 @@ export default {
       hdTableListData: {},
       page: 1,
       totalPages: 1,
-
+      message: '',
+      thisItemData: {},
+      showQR: false,
+      showQRImg: false,
       showNewHdModal: false,
       showEditHdTimeModal: false,
-      showAlertModal: false,
-
-      message: '',
-
-      thisItemData: {},
-
-      showQR: false,
-      showQRImg: false
-    }
-  },
-  vuex: {
-    actions,
-    getters: {
-      
+      showAlertModal: false
     }
   },
   components: {
     pagination,
-
     newHdModal,
     editHdTimeModal,
     alertModal,
@@ -158,10 +147,6 @@ export default {
       this.showAlertModal = true;
       this.message = msg;
     },
-    createActivity () {
-      console.log('createActivity');
-      this.message = 'createActivity';
-    },
     updateTableListData (desc) {
       var _this = this;
       service.getListItem(this.page).then(function (rsp) {
@@ -179,13 +164,10 @@ export default {
       window.open('#!/workspace/' + hdIndex);
     },
     preview (thisItemData) {
-
       this.showQR = true;
       this.showQRImg = true;
-
       var qrcode = document.getElementById("qrcode");
       qrcode.innerHTML = '';
-
       new QRCode(qrcode, 'http://admin.vip.yy.com:8080/buildfiles/' + thisItemData.index + '.html');
     },
     closeQR () {

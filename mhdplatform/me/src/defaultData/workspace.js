@@ -45,7 +45,6 @@ workspaceDefaultData.initVmData = {
     		fontSize: false
     	},
     	text: false,
-    	responsibility: false,
     	href: false,
     	script: false,
     	url: false,
@@ -88,12 +87,6 @@ workspaceDefaultData.initVmData = {
   		fontSize: 0
   	},
   	text: '',
-  	responsibility: [
-  		'myGiftRecord',
-  		'buyRecord',
-  		'sendRecord',
-  		'receiveRecord'
-  	],
   	href: '',
   	script: '',
   	url: '',
