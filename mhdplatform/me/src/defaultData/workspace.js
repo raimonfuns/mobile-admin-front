@@ -133,13 +133,16 @@ workspaceDefaultData.initVmData = {
 
   /*
    ****************
-   * 页面样式
+   * 页面样式和属性
    ****************
    */
-  singleBgUrl: '',
-  backgroundColor: '',
-  pageHeight: '100%',
-  guideColor: '#FEDD52',
+  pageParams: {
+    singleBgUrl: '',                  // 背景图片
+    backgroundColor: '',              // 背景颜色
+    pageHeight: '100%',               // 页面高度
+    guideColor: '#FEDD52',            // 遇到图标颜色
+    pageCount: 1											// 页面数量
+  },
 
   /*
    ****************
@@ -176,7 +179,6 @@ workspaceDefaultData.initVmData = {
    * 多页面配置
    ****************
    */
-  pageCount: 1,												// 页面数量
   currentPage: 1,											// 当前页面
 
   /*

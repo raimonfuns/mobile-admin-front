@@ -46,7 +46,7 @@ export default {
 	data () {
 		return {
 			showMenu: false,
-			pageCount: {{ pageData.pageStyle.pageCount }},
+			pageCount: {{ pageCount }},
 			path: ''
 		}
 	},

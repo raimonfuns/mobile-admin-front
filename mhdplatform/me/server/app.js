@@ -123,7 +123,7 @@ app.post('/mhdplatform/service/grunt/nser/makefile/:dir', function(req, res) {
 	 ***********************************
 	 */
 	function getMainHtml() {
-		return htmlMinify(tranformPxToRem(template('tpl/html/content', jsonFromOriginPage.pageStyle)), {
+		return htmlMinify(tranformPxToRem(template('tpl/html/content', jsonFromOriginPage.pageParams)), {
 			minifyCSS: true
 		});
 	}
@@ -170,7 +170,7 @@ app.post('/mhdplatform/service/grunt/nser/makefile/:dir', function(req, res) {
 		result = template('tpl/html/index', {
 			componentsHtml: tranformPxToRem(componentsContent),
 			menuButtonHtml: tranformPxToRem(getMenuButtonHtml()),
-			pageData: jsonFromOriginPage
+			pageParams: jsonFromOriginPage.pageParams
 		})
 1
 		return result;
@@ -187,7 +187,7 @@ app.post('/mhdplatform/service/grunt/nser/makefile/:dir', function(req, res) {
 		result = template('tpl/html/app', {
 			menuList: menuList,
 			menuButtonHtml: tranformPxToRem(getMenuButtonHtml()),
-			pageData: jsonFromOriginPage
+			pageCount: jsonFromOriginPage.pageParams.pageCount
 		});
 
 		return result;

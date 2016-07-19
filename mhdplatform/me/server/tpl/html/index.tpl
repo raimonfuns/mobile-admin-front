@@ -4,8 +4,8 @@
 			{{ componentsHtml }}
 		</div>
 
-		{{ if pageData.pageStyle.pageCount > 1 }}
-			<i v-if="showGuide" class="iconfont guide" style="color: {{ pageData.pageStyle.guideColor }}">&#xe620;</i>
+		{{ if pageParams.pageCount > 1 }}
+			<i v-if="showGuide" class="iconfont guide" style="color: {{ pageParams.guideColor }}">&#xe620;</i>
 		{{ else }}
 			<div>{{ menuButtonHtml }}</div>
 		{{ /if }}
@@ -150,7 +150,7 @@ var pageIsMoving = false;
 function swipePage(options) {
 
   // 有没有下一页或者上一页
-  if (vm.currentPage == {{ pageData.pageStyle.pageCount }} && options.direction == 'up' ||
+  if (vm.currentPage == {{ pageParams.pageCount }} && options.direction == 'up' ||
   	  vm.currentPage == 1 && options.direction == 'down') return false;
 
   // 页面是否正在滑动
@@ -184,7 +184,7 @@ function swipePage(options) {
 
     pageIsMoving = false; // 页面滑动停止
 
-    if(vm.currentPage < {{ pageData.pageStyle.pageCount }}) {
+    if(vm.currentPage < {{ pageParams.pageCount }}) {
      vm.showGuide = true; // 显示图标
     }
   }

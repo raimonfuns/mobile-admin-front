@@ -51,14 +51,14 @@
 		<!-- 操作区 -->
 		<div class="modal-container">
 			<div class="h5-title">
-				编辑区域高度是286px，高度是<input class="heightInput" type="text" v-model="pageHeight">
+				编辑区域高度是286px，高度是<input class="heightInput" type="text" v-model="pageParams.pageHeight">
 			</div>
 			<div class="h5-container">
 
 				<img class="phone-header" src="http://file.do.yy.com/group3/M00/CC/55/tz0GSFcHgBmADg4KAAAUmSWgmSE098.png" alt="">
 				<div class="h5-content">
-					<div class="content-wrap" v-bind:style="{backgroundColor: backgroundColor, height: pageHeight.indexOf('%') == -1 ? pageHeight + 'px' : pageHeight}">
-						<img class="bg" v-if="singleBgUrl" v-bind:src="singleBgUrl">
+					<div class="content-wrap" v-bind:style="{backgroundColor: pageParams.backgroundColor, height: pageParams.pageHeight.indexOf('%') == -1 ? pageParams.pageHeight + 'px' : pageParams.pageHeight}">
+						<img class="bg" v-if="pageParams.singleBgUrl" v-bind:src="pageParams.singleBgUrl">
 
 						<div v-if="showLoading">
 							<div class="loadingWrap">
@@ -162,8 +162,8 @@
 				<p v-for="item in pageArray" track-by="$index">
 					<a href="javascript:;" class="btn btn-success" v-bind:class="{selected: ($index + 1) == currentPage}" @click="selectPage($index + 1)">页面{{ $index + 1 }}</a>
 				</p>
-				<p v-if="pageCount > 1">
-					引导图标颜色：<input class="guide-color-input" type="text" v-model="guideColor">
+				<p v-if="pageParams.pageCount > 1">
+					引导图标颜色：<input class="guide-color-input" type="text" v-model="pageParams.guideColor">
 				</p>
 				<p class="add-or-sub-btn-wrap">
 					<a href="javascript:;" class="btn btn-success" @click="addPage">+</a>
@@ -184,7 +184,7 @@
 	<background-modal
 		:show.sync="showBackgroundColorModal"
 		:close.sync="closeBackgroundColorModal"
-		:background-color.sync="backgroundColor">
+		:background-color.sync="pageParams.backgroundColor">
 	</background-modal>
 
 	<!-- 二维码浮层 -->
@@ -247,7 +247,7 @@ export default {
 		},
 
 		pageArray () {
-			return new Array(Number(this.pageCount));
+			return new Array(Number(this.pageParams.pageCount));
 		}
 	},
 
@@ -459,12 +459,7 @@ export default {
 		// 保存
 		save (showStatus) {
 			// 保存背景图片
-			if (!vm.hdData.pageStyle) vm.hdData.pageStyle = {};
-			vm.hdData.pageStyle.singleBgUrl = vm.singleBgUrl;
-			vm.hdData.pageStyle.backgroundColor = vm.backgroundColor;
-			vm.hdData.pageStyle.pageHeight = vm.pageHeight;
-			vm.hdData.pageStyle.pageCount = vm.pageCount;
-			vm.hdData.pageStyle.guideColor = vm.guideColor;
+			vm.hdData.pageParams = vm.pageParams;
 			vm.hdData.index = vm.hdIndex;
 
 			// log(vm.clearHdData);
@@ -521,7 +516,7 @@ export default {
 
 		// 图片上传回调函数
 		uploadCallback (fileUrl) {
-			vm.singleBgUrl = fileUrl;
+			vm.pageParams.singleBgUrl = fileUrl;
 		},
 
 		/*
@@ -649,14 +644,14 @@ export default {
 
 		// 添加页面
 		addPage () {
-			vm.pageCount++;
+			vm.pageParams.pageCount++;
 		},
 
 		// 删除页面
 		subPage () {
-			if (vm.pageCount == 1) return false;
+			if (vm.pageParams.pageCount == 1) return false;
 
-			vm.pageCount--;
+			vm.pageParams.pageCount--;
 		},
 
 		// 选择当前页面
@@ -795,13 +790,7 @@ function initComponent(data) {
 }
 
 function initPage(data) {
-	if (data.pageStyle) {
-		vm.singleBgUrl = data.pageStyle.singleBgUrl;					// 背景图片
-		vm.backgroundColor = data.pageStyle.backgroundColor;	// 背景颜色
-		vm.pageHeight = data.pageStyle.pageHeight;						// 页面高度
-		vm.pageCount = data.pageStyle.pageCount;							// 页数
-		vm.guideColor = data.pageStyle.guideColor;						// 引导图标颜色
-	}
+	if (data.pageParams) vm.pageParams = data.pageParams;
 }
 
 // 绑定事件
