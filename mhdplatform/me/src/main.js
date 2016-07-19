@@ -1,8 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import App from './components/app.vue'
+<<<<<<< HEAD
 import hdTableList from './components/hdtablelist.vue'
 import workspace from './components/workspace.vue'
+=======
+import hdTableList from './views/hdtablelist.vue'
+import workspace from './views/workspace.vue'
+>>>>>>> change-constructor
 
 // js
 require('./library/jquery-ui.js');
