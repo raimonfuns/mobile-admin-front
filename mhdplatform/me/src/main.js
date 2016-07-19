@@ -4,8 +4,6 @@ import App from './components/app.vue'
 import hdTableList from './components/hdtablelist.vue'
 import workspace from './components/workspace.vue'
 
-console.log(jQuery);
-
 // js
 require('./library/jquery-ui.js');
 require('./library/jquery-ui-timepicker-addon.js');
