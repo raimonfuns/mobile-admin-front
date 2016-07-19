@@ -173,25 +173,14 @@
 		</div>
 	</div>
 
-	<!-- 图片上传浮层 -->
-	<modal
-		:show.sync="showUploadModal"
-    :close="closeUploadModal">
-		<div slot="header">
-			<h3>背景图片上传</h3>
-		</div>
-		<div slot="body">
-      <upload :callback="uploadCallback"></upload>
-    </div>
-    <div slot="footer">
-      <button class="btn btn-default" @click="closeUploadModal">
-        关闭
-      </button>
-    </div>
-	</modal>
+	<upload-modal
+		:show-upload-modal.sync="showUploadModal"
+		:close-upload-modal.sync="closeUploadModal"
+		:upload-callback.sync="uploadCallback">
+	</upload-modal>
 
 	<!-- 背景颜色浮层 -->
-	<modal
+	<!-- <modal
 		:show.sync="showBackgroundColorModal"
     :close="closeBackgroundColorModal">
 		<div slot="header">
@@ -205,7 +194,8 @@
         关闭
       </button>
     </div>
-	</modal>
+	</modal> -->
+
 
 	<!-- 二维码浮层 -->
 	<modal
@@ -246,24 +236,23 @@ var VueFileUpload = require('vue-file-upload');
 
 import service from '../service';
 import workspaceDefaultData from '../defaultData/workspace';
-import upload from '../components/upload.vue';
 import modal from '../components/modal.vue';
 import loading from '../components/loading.vue';
 import payModal from '../components/paymodal.vue';
 import alertModal from '../components/alertmodal.vue';
 import rankModal from '../components/rankmodal.vue';
+import uploadModal from '../components/uploadmodal.vue';
 
 var vm; // v-model
 var $contentWrap;
 
-
 export default {
 	components: {
-  	upload,
   	modal,
   	loading,
   	payModal,
-  	alertModal
+  	alertModal,
+		uploadModal
   },
 
 	data () {
