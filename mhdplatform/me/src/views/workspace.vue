@@ -173,6 +173,7 @@
 		</div>
 	</div>
 
+	<!-- 上传图片浮层 -->
 	<upload-modal
 		:show.sync="showUploadModal"
 		:close.sync="closeUploadModal"
