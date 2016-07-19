@@ -385,25 +385,15 @@ export default {
 
 		'editWrapItem.productId': function (val) {
 			if (getCurrentSelectComponent().category != 'payButton') return false;
-
 			if (getEditWrapItem().currentSelectedPayComponent) {
 				_.each(getEditWrapItem().currentSelectedPayComponent.productCompnents, function (productCompnent) {
 					if (productCompnent.productId == val) {
 						getEditWrapItem().text = productCompnent.name;
-						// console.log('productCompnent.name: ' + productCompnent.name);
-					}
-				});
-			}
-
-			saveComponentDataToVm('productId', val);
-
-			if (getEditWrapItem().currentSelectedPayComponent) {
-				_.each(getEditWrapItem().currentSelectedPayComponent.productCompnents, function (productCompnent) {
-					if (productCompnent.productId == val) {
 						saveComponentDataToVm('productCompnentDesc', productCompnent.name);
 					}
 				});
 			}
+			saveComponentDataToVm('productId', val);
 		},
 
 		'editWrapItem.actId': function (val) {
@@ -452,9 +442,6 @@ export default {
 			// 保存背景图片
 			vm.hdData.pageParams = vm.pageParams;
 			vm.hdData.index = vm.hdIndex;
-
-			// log(vm.clearHdData);
-
 			if (showStatus) vm.alertModal();
 			service.saveItem(vm.hdData).then(function (rsp) {
 				if (showStatus) {
@@ -465,13 +452,11 @@ export default {
 					}
 				}
 	    });
-
 		},
 
 		// 预览
 		preview () {
 			vm.save();
-
 			vm.showToggle.showQR = true;
 			service.preview(vm.hdData).then(function (rsp) {
 				if (!vm.hasCreate) {
@@ -482,13 +467,11 @@ export default {
 					vm.showToggle.showQRImg = true;
 				}
 			});
-
 		},
 
 		// 发布
 		release () {
 			vm.save();
-
 			vm.alertModal();
 			service.release(vm.hdData).then(function (rsp) {
 				if (rsp.data.result) {
@@ -578,13 +561,17 @@ export default {
 
 		// 删除组件
 		deleteComponent () {
-			var thisComponentId = getCurrentSelectComponent().id;
-			var thisComponentCategory = getCurrentSelectComponent().category;
-
 			// 以group的形式删除组件
 			var groupName = getCurrentComponentJQueryElement().data('group');
-			console.log(groupName);
 			if (groupName) {
+				deleteComponentByGroupName(groupName);
+			// 以id的形式删除一个组件
+			} else {
+				deleteComponentById(getCurrentSelectComponent().id, getCurrentSelectComponent().category);
+			}
+			closeEditWrap();
+
+			function deleteComponentByGroupName(groupName) {
 				$('[data-group]').each(function (key, element) {
 					var $element = $(element);
 					if ($element.data('group') == groupName) {
@@ -593,9 +580,8 @@ export default {
 						$(element).remove();
 					}
 				});
-
-			// 以id的形式删除一个组件
-			} else {
+			}
+			function deleteComponentById(thisComponentId, thisComponentCategory) {
 				vm.hdData.component[thisComponentCategory] = _.omit(vm.hdData.component[thisComponentCategory], thisComponentId);
 				$('.component').each(function (index, element) {
 					if (element.id == thisComponentId) {
@@ -603,8 +589,6 @@ export default {
 					}
 				});
 			}
-
-			closeEditWrap();
 		},
 
 		/*
@@ -793,8 +777,10 @@ function bindUI() {
 
 		var $target = $(event.target);
 
+		// 点击侧边栏时，不往下执行
 		if ($target.hasClass('edit-wrap') || $target.closest('.edit-wrap').length > 0) return false;
 
+		// 找到带有component样式的组件
 		if (!$target.hasClass('component')) {
 			$target = $target.closest('.component');
 		}
