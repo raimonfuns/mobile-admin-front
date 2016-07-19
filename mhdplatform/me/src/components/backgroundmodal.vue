@@ -1,8 +1,8 @@
 <template>
 	<div class="vue-modal">
     <modal
-      :show.sync="showBackgroundColorModal"
-      :close="closeBackgroundColorModal">
+      :show.sync="show"
+      :close="close">
       <div slot="header">
         <h3>设置背景图片颜色</h3>
       </div>
@@ -10,7 +10,7 @@
         <label>背景颜色:</label><input type="text" v-model="backgroundColor">
       </div>
       <div slot="footer">
-        <button class="btn btn-default" @click="closeBackgroundColorModal">
+        <button class="btn btn-default" @click="close">
           关闭
         </button>
       </div>
@@ -23,8 +23,8 @@ import modal from './modal.vue';
 
 export default {
 	props: [
-    "showBackgroundColorModal",
-    "closeBackgroundColorModal",
+    "show",
+    "close",
     "backgroundColor"
   ],
 	components: {

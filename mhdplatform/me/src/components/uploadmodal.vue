@@ -1,8 +1,8 @@
 <template>
 	<div class="vue-modal">
     <modal
-  		:show.sync="showUploadModal"
-      :close="closeUploadModal">
+  		:show.sync="show"
+      :close="close">
   		<div slot="header">
   			<h3>背景图片上传</h3>
   		</div>
@@ -10,7 +10,7 @@
         <upload :callback="uploadCallback"></upload>
       </div>
       <div slot="footer">
-        <button class="btn btn-default" @click="closeUploadModal">
+        <button class="btn btn-default" @click="close">
           关闭
         </button>
       </div>
@@ -24,8 +24,8 @@ import upload from '../components/upload.vue';
 
 export default {
 	props: [
-    "showUploadModal",
-    "closeUploadModal",
+    "show",
+    "close",
     "uploadCallback"
   ],
 	components: {

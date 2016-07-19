@@ -174,15 +174,15 @@
 	</div>
 
 	<upload-modal
-		:show-upload-modal.sync="showUploadModal"
-		:close-upload-modal.sync="closeUploadModal"
+		:show.sync="showUploadModal"
+		:close.sync="closeUploadModal"
 		:upload-callback.sync="uploadCallback">
 	</upload-modal>
 
 	<!-- 背景颜色浮层 -->
 	<background-modal
-		:show-background-color-modal.sync="showBackgroundColorModal"
-		:close-background-color-modal.sync="closeBackgroundColorModal"
+		:show.sync="showBackgroundColorModal"
+		:close.sync="closeBackgroundColorModal"
 		:background-color.sync="backgroundColor">
 	</background-modal>
 
