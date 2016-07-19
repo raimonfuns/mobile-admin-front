@@ -195,7 +195,11 @@
       </button>
     </div>
 	</modal> -->
-
+	<background-modal
+		:show-background-color-modal.sync="showBackgroundColorModal"
+		:close-background-color-modal.sync="closeBackgroundColorModal"
+		:background-color.sync="backgroundColor">
+	</background-modal>
 
 	<!-- 二维码浮层 -->
 	<modal
@@ -242,6 +246,7 @@ import payModal from '../components/paymodal.vue';
 import alertModal from '../components/alertmodal.vue';
 import rankModal from '../components/rankmodal.vue';
 import uploadModal from '../components/uploadmodal.vue';
+import backgroundModal from '../components/backgroundmodal.vue';
 
 var vm; // v-model
 var $contentWrap;
@@ -252,7 +257,8 @@ export default {
   	loading,
   	payModal,
   	alertModal,
-		uploadModal
+		uploadModal,
+		backgroundModal
   },
 
 	data () {
