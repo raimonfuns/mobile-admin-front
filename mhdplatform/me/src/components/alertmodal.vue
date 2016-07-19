@@ -4,10 +4,10 @@
 			<modal
 				:show.sync="show"
         :close.sync="close">
-				
+
 				<!-- header -->
 				<div slot="header">
-					<h3>提示信息</h3>	
+					<h3>提示信息</h3>
 				</div>
 
 				<!-- body -->

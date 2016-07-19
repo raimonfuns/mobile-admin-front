@@ -18,10 +18,10 @@
 								<button @click="openPayModal" class="btn btn-success btn-sm">支付配置</button>
 							</p>
 							<p>
-								<button @click="createPayButton" class="btn btn-success btn-sm">支付按钮</button>
+								<button @click="createComponent('payButton')" class="btn btn-success btn-sm">支付按钮</button>
 							</p>
 							<p>
-								<button @click="createGiftRecord" class="btn btn-success btn-sm">礼品列表</button>
+								<button @click="createComponent('giftRecord')" class="btn btn-success btn-sm">礼品列表</button>
 							</p>
 						</div>
 					</div>
@@ -34,7 +34,7 @@
 								<button @click="showToggle.showBackgroundColorModal = true" class="btn btn-success btn-sm">背景颜色</button>
 							</p>
 							<p>
-								<button @click="createBanner" class="btn btn-success btn-sm">banner</button>
+								<button @click="createComponent('banner')" class="btn btn-success btn-sm">banner</button>
 							</p>
 						</div>
 					</div>
@@ -204,7 +204,7 @@
 	<!-- 弹窗浮层 -->
   <alert-modal
     :show.sync="showToggle.showAlertModal"
-    :message.sync="message">
+    :message.sync="alertMessage">
   </alert-modal>
 </template>
 
@@ -223,6 +223,8 @@ import uploadModal from '../components/uploadmodal.vue';
 import backgroundModal from '../components/backgroundmodal.vue';
 import qrModal from '../components/qrmodal.vue';
 
+import * as actions from '../vuex/actions'
+
 var vm; // v-model
 var $contentWrap;
 
@@ -235,6 +237,13 @@ export default {
 		uploadModal,
 		backgroundModal,
 		qrModal
+  },
+
+	vuex: {
+    actions,
+    getters: {
+
+    }
   },
 
 	data () {
@@ -408,25 +417,7 @@ export default {
      * 创建组件
      ***************************************************************************************************
      */
-		createCustomButton () {
-			createComponent('customButton', getComponentDefaultData('customButton'));
-		},
-
-		createPayButton () {
-			createComponent('payButton', getComponentDefaultData('payButton'));
-		},
-
-		createGiftRecord () {
-			createComponent('giftRecord', getComponentDefaultData('giftRecord'));
-		},
-
-		createMenuButton () {
-			createComponent('menuButton', getComponentDefaultData('menuButton'));
-		},
-
-		createBanner () {
-			createComponent('banner', getComponentDefaultData('banner'));
-		},
+		createComponent: createComponent,
 
 		createRank () {
 			var rankGroup = {
@@ -558,12 +549,12 @@ export default {
 		// alert浮层
 		alertModal () {
 			vm.showToggle.showAlertModal = true;
-			vm.message = '';
+			vm.alertMessage = '';
 		},
 
 		// 设置alert内容
 		setAlertMsg (msg) {
-      vm.message = msg;
+      vm.alertMessage = msg;
     },
 
 		/*
@@ -711,6 +702,7 @@ function getUniqueRandomId(category) {
 
 // 创建组件
 function createComponent(tplName, data) {
+	if (!data) data = getComponentDefaultData(tplName);
 	var $components = $(require('../../server/tpl/component/' + tplName + '.tpl')(data));
 	// 绑定拖动事件并插到页面
 	$components.draggable({

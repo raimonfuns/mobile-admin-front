@@ -67,7 +67,7 @@ workspaceDefaultData.initVmData = {
    * alert
    ****************
    */
-  message: '',												// alertMessage
+  alertMessage: '',												// alertMessage
 
   /*
    ****************

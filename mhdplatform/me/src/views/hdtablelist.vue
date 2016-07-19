@@ -2,7 +2,7 @@
 
   <nav class="navbar navbar-default navbar-static-top" style="margin-bottom: 0">
     <div class="navbar-header">
-      <a class="navbar-brand" href="/">专题模板生成页面</a>
+      <a class="navbar-brand" href="/">专题模板生成页面 test ({{ count }} <button @click="openAlert('hello123')">alert</button>) test </a>
     </div>
   </nav>
   <div class="container">
@@ -102,6 +102,8 @@ import editHdTimeModal from '../components/edithdtimemodal.vue'
 import alertModal from '../components/alertmodal.vue'
 import modal from '../components/modal.vue'
 
+import * as actions from '../vuex/actions'
+
 export default {
   data () {
     return {
@@ -119,6 +121,12 @@ export default {
 
       showQR: false,
       showQRImg: false
+    }
+  },
+  vuex: {
+    actions,
+    getters: {
+      
     }
   },
   components: {

@@ -1,10 +1,17 @@
 <template>
 	<div class="page-main">
-		
+
 		<router-view></router-view>
-		
+
 	</div>
 </template>
+
+<script>
+import store from '../vuex/store'
+export default {
+  store
+}
+</script>
 
 <style lang="stylus">
 * {
@@ -18,12 +25,12 @@ li {
 	list-style: none;
 }
 /*清除浮动*/
-.cl:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; } 
+.cl:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
 .cl { zoom: 1; }
 .clear {clear:both;display:inline;}
 
 /*显示隐藏*/
-.show{display:block;} 
+.show{display:block;}
 .hide{display:none;}
 
 /*定位*/
@@ -48,8 +55,8 @@ li {
 
 /*loading*/
 .loadicon{
-	background-image:url(http://file.do.yy.com/group3/M00/5B/2F/tz0MYFVa96KANioDAAAOiKQYvkU366.gif); 
-	background-repeat: no-repeat;  
+	background-image:url(http://file.do.yy.com/group3/M00/5B/2F/tz0MYFVa96KANioDAAAOiKQYvkU366.gif);
+	background-repeat: no-repeat;
 	background-position:center center;
 }
 
@@ -136,7 +143,7 @@ dib-wrap() {
 			letter-spacing:-5px;
 		}
 	}
-	
+
 }
 dib() {
 	display: inline-block;
