@@ -5,7 +5,7 @@
 			<div class="btn-wrap">
 				<div class="create-wrap text-center">
 					<div @click.stop="toggleBtnMenu(0)" class="btnMenu btn btn-success btn-sm">榜单组件
-						<div class="menuList" v-if="showBtnMenu[0]">
+						<div class="menuList" v-if="showToggle.showBtnMenu[0]">
 							<p>
 								<button @click="createRank" class="btn btn-success btn-sm">新建榜单</button>
 							</p>
@@ -13,7 +13,7 @@
 					</div>
 
 					<div @click.stop="toggleBtnMenu(1)" class="btnMenu btn btn-success btn-sm">支付组件
-						<div class="menuList" v-if="showBtnMenu[1]">
+						<div class="menuList" v-if="showToggle.showBtnMenu[1]">
 							<p>
 								<button @click="openPayModal" class="btn btn-success btn-sm">支付配置</button>
 							</p>
@@ -26,12 +26,12 @@
 						</div>
 					</div>
 					<div @click.stop="toggleBtnMenu(2)" class="btnMenu btn btn-success btn-sm">背景
-						<div class="menuList" v-if="showBtnMenu[2]">
+						<div class="menuList" v-if="showToggle.showBtnMenu[2]">
 							<p>
 								<button @click="openUploadModal" class="btn btn-success btn-sm">上传背景</button>
 							</p>
 							<p>
-								<button @click="showBackgroundColorModal = true" class="btn btn-success btn-sm">背景颜色</button>
+								<button @click="showToggle.showBackgroundColorModal = true" class="btn btn-success btn-sm">背景颜色</button>
 							</p>
 							<p>
 								<button @click="createBanner" class="btn btn-success btn-sm">banner</button>
@@ -60,7 +60,7 @@
 					<div class="content-wrap" v-bind:style="{backgroundColor: pageParams.backgroundColor, height: pageParams.pageHeight.indexOf('%') == -1 ? pageParams.pageHeight + 'px' : pageParams.pageHeight}">
 						<img class="bg" v-if="pageParams.singleBgUrl" v-bind:src="pageParams.singleBgUrl">
 
-						<div v-if="showLoading">
+						<div v-if="showToggle.showLoading">
 							<div class="loadingWrap">
 								<loading></loading>
 							</div>
@@ -71,10 +71,10 @@
 		</div>
 
 		<!-- 侧边栏 -->
-		<div class="edit-component-wrap edit-wrap" v-show="showEditWrap">
+		<div class="edit-component-wrap edit-wrap" v-show="showToggle.showEditWrap">
 			<h2>属性</h2>
 			<div class="edit-wrap-content">
-				<p v-if="showEditWrapItem.productId">
+				<p v-if="showToggle.showEditWrapItem.productId">
 					<label>支付组件:</label>
 					<select v-model="editWrapItem.currentSelectedPayComponent">
 						<option value="myGiftRecord"
@@ -86,7 +86,7 @@
 					</select>
 				</p>
 
-				<p v-if="showEditWrapItem.productId && editWrapItem.currentSelectedPayComponent">
+				<p v-if="showToggle.showEditWrapItem.productId && editWrapItem.currentSelectedPayComponent">
 					<label>支付项</label>
 					<select v-model="editWrapItem.productId">
 						<option value="myGiftRecord"
@@ -96,55 +96,55 @@
 						</option>
 					</select>
 				</p>
-				<p v-if="showEditWrapItem.actId">
+				<p v-if="showToggle.showEditWrapItem.actId">
 					<label>actId:</label><input type="text" v-model="editWrapItem.actId">
 				</p>
-				<p v-if="showEditWrapItem.href">
+				<p v-if="showToggle.showEditWrapItem.href">
 					<label>链接:</label><input type="text" v-model="editWrapItem.href">
 				</p>
-				<!-- <p v-if="showEditWrapItem.script">
+				<!-- <p v-if="showToggle.showEditWrapItem.script">
 					<label>脚本:</label><input type="text" v-model="editWrapItem.script">
 				</p> -->
-				<p v-if="showEditWrapItem.url">
+				<p v-if="showToggle.showEditWrapItem.url">
 					<label>图片链接:</label><input type="text" v-model="editWrapItem.url">
 				</p>
-				<p v-if="showEditWrapItem.text">
+				<p v-if="showToggle.showEditWrapItem.text">
 					<label>文本:</label><input type="text" v-model="editWrapItem.text">
 				</p>
-				<p v-if="showEditWrapItem.style.width">
+				<p v-if="showToggle.showEditWrapItem.style.width">
 					<label>宽度:</label><input type="text" v-model="editWrapItem.style.width">
 				</p>
-				<p v-if="showEditWrapItem.style.height">
+				<p v-if="showToggle.showEditWrapItem.style.height">
 					<label>高度:</label><input type="text" v-model="editWrapItem.style.height">
 				</p>
-				<p v-if="showEditWrapItem.style.top">
+				<p v-if="showToggle.showEditWrapItem.style.top">
 					<label>top:</label><input type="text" v-model="editWrapItem.style.top">
 				</p>
-				<p v-if="showEditWrapItem.style.left">
+				<p v-if="showToggle.showEditWrapItem.style.left">
 					<label>left:</label><input type="text" v-model="editWrapItem.style.left">
 				</p>
-				<p v-if="showEditWrapItem.rankImgWidth">
+				<p v-if="showToggle.showEditWrapItem.rankImgWidth">
 					<label>头像宽度:</label><input type="text" v-model="editWrapItem.rankImgWidth">
 				</p>
-				<p v-if="showEditWrapItem.borderColor">
+				<p v-if="showToggle.showEditWrapItem.borderColor">
 					<label>边框颜色:</label><input type="text" v-model="editWrapItem.borderColor">
 				</p>
-				<p v-if="showEditWrapItem.style.color">
+				<p v-if="showToggle.showEditWrapItem.style.color">
 					<label>字体颜色:</label><input type="text" v-model="editWrapItem.style.color">
 				</p>
-				<p v-if="showEditWrapItem.style.background">
+				<p v-if="showToggle.showEditWrapItem.style.background">
 					<label>背景颜色:</label><input type="text" v-model="editWrapItem.style.background">
 				</p>
-				<p v-if="showEditWrapItem.style.borderRadius">
+				<p v-if="showToggle.showEditWrapItem.style.borderRadius">
 					<label>圆角:</label><input type="text" v-model="editWrapItem.style.borderRadius">
 				</p>
-				<p v-if="showEditWrapItem.style.fontSize">
+				<p v-if="showToggle.showEditWrapItem.style.fontSize">
 					<label>字体大小:</label><input type="text" v-model="editWrapItem.style.fontSize">
 				</p>
-				<p v-if="showEditWrapItem.column_1_percentage">
+				<p v-if="showToggle.showEditWrapItem.column_1_percentage">
 					<label>第一列:</label><input type="text" v-model="editWrapItem.column_1_percentage">
 				</p>
-				<p v-if="showEditWrapItem.column_2_percentage">
+				<p v-if="showToggle.showEditWrapItem.column_2_percentage">
 					<label>第二列:</label><input type="text" v-model="editWrapItem.column_2_percentage">
 				</p>
 				<p class="text-center">
@@ -175,35 +175,35 @@
 
 	<!-- 上传图片浮层 -->
 	<upload-modal
-		:show.sync="showUploadModal"
+		:show.sync="showToggle.showUploadModal"
 		:close.sync="closeUploadModal"
 		:upload-callback.sync="uploadCallback">
 	</upload-modal>
 
 	<!-- 背景颜色浮层 -->
 	<background-modal
-		:show.sync="showBackgroundColorModal"
+		:show.sync="showToggle.showBackgroundColorModal"
 		:close.sync="closeBackgroundColorModal"
 		:background-color.sync="pageParams.backgroundColor">
 	</background-modal>
 
 	<!-- 二维码浮层 -->
 	<qr-modal
-    :show.sync="showQR"
+    :show.sync="showToggle.showQR"
     :close.sync="closeQR",
-    :show-img.sync="showQRImg">
+    :show-img.sync="showToggle.showQRImg">
   </qr-modal>
 
 	<!-- 支付组件浮层 -->
 	<pay-modal
-    :show.sync="showPayModal"
+    :show.sync="showToggle.showPayModal"
     :hd-index.sync="hdIndex",
     :hd-data.sync="hdData">
   </pay-modal>
 
 	<!-- 弹窗浮层 -->
   <alert-modal
-    :show.sync="showAlertModal"
+    :show.sync="showToggle.showAlertModal"
     :message.sync="message">
   </alert-modal>
 </template>
@@ -481,14 +481,14 @@ export default {
 		preview () {
 			vm.save();
 
-			vm.showQR = true;
+			vm.showToggle.showQR = true;
 			service.preview(vm.hdData).then(function (rsp) {
 				if (!vm.hasCreate) {
 					vm.hasCreate = true;
 					var _previewUrl = 'http://' + window.location.host + '/mhdplatform/me/preview/' + vm.hdIndex + '/';
 					new QRCode(document.getElementById("qrcode"), _previewUrl);
 					$('#previewLocation').attr('href', _previewUrl);
-					vm.showQRImg = true;
+					vm.showToggle.showQRImg = true;
 				}
 			});
 
@@ -527,37 +527,37 @@ export default {
 
 		// 打开支付组件浮层
 		openPayModal () {
-			vm.showPayModal = true;
+			vm.showToggle.showPayModal = true;
 		},
 
 		// 打开上传图片浮层
 		openUploadModal () {
-			vm.showUploadModal = true;
+			vm.showToggle.showUploadModal = true;
 		},
 
 		// 关闭上传图片浮层
 		closeUploadModal () {
-			vm.showUploadModal = false;
+			vm.showToggle.showUploadModal = false;
 		},
 
 		// 打开排行榜配置浮层
  		openRankModal () {
- 			vm.showRankModal = true;
+ 			vm.showToggle.showRankModal = true;
  		},
 
 		// 关闭设置背景颜色浮层
 		closeBackgroundColorModal () {
-			vm.showBackgroundColorModal = false;
+			vm.showToggle.showBackgroundColorModal = false;
 		},
 
 		// 关闭二维码浮层
 		closeQR () {
-			vm.showQR = false;
+			vm.showToggle.showQR = false;
 		},
 
 		// alert浮层
 		alertModal () {
-			vm.showAlertModal = true;
+			vm.showToggle.showAlertModal = true;
 			vm.message = '';
 		},
 
@@ -624,16 +624,16 @@ export default {
 
 		// 显示当前菜单下拉框
 		toggleBtnMenu (index) {
-			if (!vm.showBtnMenu[index]) {
-				vm.showBtnMenu = [];
+			if (!vm.showToggle.showBtnMenu[index]) {
+				vm.showToggle.showBtnMenu = [];
 			}
 
-			vm.showBtnMenu.$set(index, !vm.showBtnMenu[index]);
+			vm.showToggle.showBtnMenu.$set(index, !vm.showToggle.showBtnMenu[index]);
 		},
 
 		// 隐藏所有菜单下拉框
 		hiddenAllBtnMenu () {
-			vm.showBtnMenu = [];
+			vm.showToggle.showBtnMenu = [];
 		},
 
 		/*
@@ -687,7 +687,7 @@ export default {
 		      initPage(rsp.data);
 					bindUI();
 
-					vm.showLoading = false;
+					vm.showToggle.showLoading = false;
 
 					autoSave(5 * 60);
 		    });
@@ -826,27 +826,27 @@ function initEditWrap() {
 	var currentSelectComponentStyle = getCurrentSelectComponent().style;
 
 	// 全部属性设置为隐藏
-	_.each(vm.showEditWrapItem, function (value, property) {
+	_.each(vm.showToggle.showEditWrapItem, function (value, property) {
 		if (property == 'style') {
 			_.each(value, function (styleValue, styleProperty) {
-				vm.showEditWrapItem['style'][styleProperty] = false;
+				vm.showToggle.showEditWrapItem['style'][styleProperty] = false;
 			});
 		} else {
-			vm.showEditWrapItem[property] = false;
+			vm.showToggle.showEditWrapItem[property] = false;
 		}
 	});
 
 	// 显示style
 	_.each(currentSelectComponentStyle, function (value, styleProperty) {
 		getEditWrapItem().style[styleProperty] = value;
-		vm.showEditWrapItem.style[styleProperty] = true;
+		vm.showToggle.showEditWrapItem.style[styleProperty] = true;
 	});
 
 	// 显示其他属性
 	_.each(vm.currentSelectComponent, function (value, property) {
 		if (property != 'style') {
 			vm.editWrapItem[property] = value;
-			vm.showEditWrapItem[property] = true;
+			vm.showToggle.showEditWrapItem[property] = true;
 		}
 	});
 }
@@ -956,12 +956,12 @@ function getEditWrapItem() {
 
 // 显示编辑器
 function openEditWrap() {
-	vm.showEditWrap = true;
+	vm.showToggle.showEditWrap = true;
 }
 
 // 隐藏编辑器
 function closeEditWrap() {
-	vm.showEditWrap = false;
+	vm.showToggle.showEditWrap = false;
 }
 
 // 重置编辑器

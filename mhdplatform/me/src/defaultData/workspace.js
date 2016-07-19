@@ -21,19 +21,52 @@ workspaceDefaultData.initVmData = {
    */
   hdIndex: 0,													// 活动id
 
-  /*
-   ****************
-   * loading
-   ****************
-   */
-  showLoading: true,									// loading
+  showToggle: {
+    showLoading: true,									// loading
+    showAlertModal: false,							// alert
+    showEditWrap: false, 								// 是否显示编辑区域
+    showUploadModal: false,							// 背景图片上传
+    showBackgroundColorModal: false,		// 背景颜色
+    showQR: false,							 				// 二维码弹窗
+    showQRImg: false,										// 显示二维码
+    showPayModal: false,								// 支付弹窗
+    showRankModal: false,								// 榜单配置弹窗
+    showBtnMenu: [],										// 下拉菜单
+    showEditWrapItem: {									// 需要显示的样式属性
+    	style: {
+    		width: false,
+    		height: false,
+    		top: false,
+    		left: false,
+    		color: false,
+    		background: false,
+    		marginLeft: false,
+    		borderRadius: false,
+    		fontSize: false
+    	},
+    	text: false,
+    	responsibility: false,
+    	href: false,
+    	script: false,
+    	url: false,
+    	menuItemList: false,
+    	productId: false,
+    	actId: false,
+    	column_1_percentage: false,
+    	column_2_percentage: false,
+
+    	// rank
+    	rankImgWidth: false,
+    	borderColor: false,
+    	rankConfig: {}
+    }
+  },
 
   /*
    ****************
    * alert
    ****************
    */
-  showAlertModal: false,							// alert
   message: '',												// alertMessage
 
   /*
@@ -41,35 +74,7 @@ workspaceDefaultData.initVmData = {
    * 编辑区域
    ****************
    */
-  showEditWrap: false, 								// 是否显示编辑区域
-  showEditWrapItem: {									// 需要显示的样式属性
-  	style: {
-  		width: false,
-  		height: false,
-  		top: false,
-  		left: false,
-  		color: false,
-  		background: false,
-  		marginLeft: false,
-  		borderRadius: false,
-  		fontSize: false
-  	},
-  	text: false,
-  	responsibility: false,
-  	href: false,
-  	script: false,
-  	url: false,
-  	menuItemList: false,
-  	productId: false,
-  	actId: false,
-  	column_1_percentage: false,
-  	column_2_percentage: false,
 
-  	// rank
-  	rankImgWidth: false,
-  	borderColor: false,
-  	rankConfig: {}
-  },
   editWrapItem: {
   	style: {													// 编辑样式
   		width: 200,
@@ -119,20 +124,6 @@ workspaceDefaultData.initVmData = {
 
   /*
    ****************
-   * 图片上传
-   ****************
-   */
-  showUploadModal: false,							// 背景图片上传
-
-  /*
-   ****************
-   * 背景颜色
-   ****************
-   */
-  showBackgroundColorModal: false,		// 背景颜色
-
-  /*
-   ****************
    * 页面样式和属性
    ****************
    */
@@ -149,30 +140,7 @@ workspaceDefaultData.initVmData = {
    * 二维码
    ****************
    */
-  showQR: false,							 				// 二维码弹窗
-  showQRImg: false,										// 显示二维码
   hasCreate: false,										// 是否已经生成过
-
-  /*
-   ****************
-   * 支付
-   ****************
-   */
-  showPayModal: false,								// 支付弹窗
-
-  /*
-   ****************
-   * 支付
-   ****************
-   */
-  showRankModal: false,								// 榜单配置弹窗
-
-  /*
-   ****************
-   * 菜单
-   ****************
-   */
-  showBtnMenu: [],										// 下拉菜单
 
   /*
    ****************
